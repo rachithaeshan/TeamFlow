@@ -6,6 +6,7 @@ import { useAuth } from "@/lib/auth-context";
 import { extractErrorMessage } from "@/lib/api";
 import { Input, Select } from "@/components/ui/Field";
 import { Button } from "@/components/ui/Button";
+import { AuthLayout } from "@/components/layout/AuthLayout";
 import type { Role } from "@/lib/types";
 
 export default function RegisterPage() {
@@ -31,31 +32,50 @@ export default function RegisterPage() {
   }
 
   return (
-    <div className="flex min-h-screen items-center justify-center bg-paper px-4">
-      <div className="w-full max-w-sm">
-        <div className="mb-8 text-center">
-          <h1 className="font-display text-2xl font-semibold text-ink">Create your account</h1>
-          <p className="mt-1 text-sm text-slate">Join your team&apos;s workspace</p>
-        </div>
-        <form onSubmit={handleSubmit} className="flex flex-col gap-4 rounded-xl border border-line bg-white p-6 shadow-sm">
-          <Input label="Full name" required value={name} onChange={(e) => setName(e.target.value)} />
-          <Input label="Email" type="email" required value={email} onChange={(e) => setEmail(e.target.value)} />
-          <Input label="Password" type="password" required minLength={8} value={password} onChange={(e) => setPassword(e.target.value)} placeholder="At least 8 characters" />
-          <Select label="Role" value={role} onChange={(e) => setRole(e.target.value as Role)}>
-            <option value="TEAM_MEMBER">Team Member</option>
-            <option value="PROJECT_MANAGER">Project Manager</option>
-            <option value="ADMIN">Admin</option>
-          </Select>
-          {error && <p className="rounded-lg border border-red/30 bg-red/10 px-3 py-2 text-sm text-red">{error}</p>}
-          <Button type="submit" disabled={submitting} className="mt-2 w-full">
-            {submitting ? "Creating account…" : "Create account"}
-          </Button>
-        </form>
-        <p className="mt-4 text-center text-sm text-slate">
+    <AuthLayout
+      title="Create your account"
+      subtitle="Set up your workspace in under a minute."
+      footer={
+        <>
           Already have an account?{" "}
-          <Link href="/login" className="font-medium text-ink underline">Sign in</Link>
-        </p>
-      </div>
-    </div>
+          <Link href="/login" className="font-medium text-ink underline underline-offset-2">
+            Sign in
+          </Link>
+        </>
+      }
+    >
+      <form onSubmit={handleSubmit} className="flex flex-col gap-4">
+        <Input label="Full name" required autoFocus value={name} onChange={(e) => setName(e.target.value)} />
+        <Input
+          label="Email"
+          type="email"
+          required
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+        />
+        <Input
+          label="Password"
+          type="password"
+          required
+          minLength={8}
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+          placeholder="At least 8 characters"
+        />
+        <Select label="Role" value={role} onChange={(e) => setRole(e.target.value as Role)}>
+          <option value="TEAM_MEMBER">Team Member</option>
+          <option value="PROJECT_MANAGER">Project Manager</option>
+          <option value="ADMIN">Admin</option>
+        </Select>
+
+        {error && (
+          <div className="rounded-lg border border-red/30 bg-red/10 px-3 py-2 text-sm text-red">{error}</div>
+        )}
+
+        <Button type="submit" disabled={submitting} className="mt-2 w-full py-2.5">
+          {submitting ? "Creating account…" : "Create account"}
+        </Button>
+      </form>
+    </AuthLayout>
   );
 }

@@ -5,6 +5,7 @@ import { usePathname } from "next/navigation";
 import clsx from "clsx";
 import { useAuth } from "@/lib/auth-context";
 import { Button } from "@/components/ui/Button";
+import { Logo } from "./Logo";
 
 function initials(name: string) {
   return name.split(" ").map((p) => p[0]).slice(0, 2).join("").toUpperCase();
@@ -26,8 +27,8 @@ export function Navbar() {
     <header className="sticky top-0 z-40 border-b border-line bg-white/95 backdrop-blur">
       <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-3.5">
         <div className="flex items-center gap-8">
-          <Link href="/dashboard" className="font-display text-lg font-semibold text-ink">
-            Task<span className="text-accent">Flow</span>
+          <Link href="/dashboard">
+            <Logo size="md" />
           </Link>
           <nav className="flex gap-1">
             {links.map((link) => (

@@ -5,12 +5,12 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        ink: "#161A2E",       // deep indigo-navy - primary text/headers
-        paper: "#F8F9FC",     // cool off-white background
-        line: "#E3E6EF",      // hairline borders
-        accent: "#5B5FEF",    // indigo - primary CTA / brand accent
-        teal: "#12897F",      // secondary accent (success/progress)
-        amber: "#B7791F",     // warnings / medium priority
+        ink: "#0B1E3D",       // deep navy from the logo - primary text/headers
+        paper: "#F7F8FB",     // cool off-white background
+        line: "#E4E7F0",      // hairline borders
+        accent: "#0E71F5",    // logo blue - primary CTA / brand accent
+        teal: "#1FB79D",      // logo teal - secondary accent (success/progress)
+        amber: "#C98A12",     // logo gold, deepened for text contrast (medium priority)
         red: "#C0392B",       // urgent / blocked
         slate: "#5C6178",
       },
